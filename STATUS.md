@@ -1,0 +1,12 @@
+# STATUS.md — OUTFIT® clone — COMPLETE (2026-11-14)
+
+- Mode: CLONE 1:1 of https://outfit.hellohello.is/ · Next.js 16 + TS + Tailwind v4 · port 4300 (detached `next start`, no tunnel/supervisor, no GitHub push).
+- Routes: 16/16 cloned — `/`, `/bag`, `/shipping-and-return`, `/product/[slug]` ×13 (all static/PPR, build passes).
+- Inspection: curl served HTML/CSS/JS for every route (exact copy/prices/sold-out/selectors/images) + parent live-browser report (reference/browser-inspection.md, integrated in reference/ANALYSIS.md). Playwright screenshots OF THE REFERENCE failed with ERR_TUNNEL_CONNECTION_FAILED (known egress-proxy block, same as SOLEA) — documented, not hidden.
+- Images: 26 product photos + 6 preloader photos downloaded from the reference's Shopify CDN / site and served locally (public/images, public/preloader, ~13 MB total).
+- Components: only Aceternity + React Bits (see COMPONENTS.md; plan in COMPONENT-PLAN.md written before build). Glue documented there (preloader, VIEW MORE cursor, scramble transition, themes, marquee/wipe).
+- Themes: red (default, cream #ede4dd + #ff0001), dark (black + cream), light (cream + black) — click-tested in QA (body bg rgb(0,0,0) in dark).
+- QA (Playwright, headless shell): 1440/1024/390/360 — exactly 1 h1 + 1 main, zero horizontal overflow, zero console/page errors, 13 cards, 0 broken images. Motion verified: hover alt-image wipe completes (clip-path inset 0), VIEW MORE disc appears, title marquee on hover, preloader counter runs then clears, red scramble transition caught mid-state (qa/local-1440-transition.png), Add-to-Bag → /bag with correct item/total ($36.50), theme dots switch + persist (localStorage).
+- Lint: 0 errors (6 warnings = unused eslint-disable directives in glue files). TypeScript: passes in build.
+- 3D: none made — reference has no 3D/canvas/video (live-verified); fidelity first.
+- Gaps: (1) Neue Haas Grotesk font files are not redistributed — clone uses the same family-name stack with Inter Tight loaded as fallback, so glyph shapes differ slightly from the reference's exact Haas cuts. (2) Checkout is a demo alert (reference uses Shopify checkout, not clonable as a static front-end). (3) Reference scroll-frame screenshots unavailable (proxy block above); comparison was against live-browser findings + served CSS values. (4) Hello Week 001 image pairing inferred from the 002 page + homepage image set (white tee = 001).

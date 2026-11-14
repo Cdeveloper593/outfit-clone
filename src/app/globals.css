@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #ede4dd;
+  --color-brand: #ff0001;
+  --font-sans: var(--font-haas), "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+:root, :root[data-theme="red"] { --bg: #ede4dd; --fg: #ff0001; color-scheme: light; }
+:root[data-theme="dark"] { --bg: #000000; --fg: #ede4dd; color-scheme: dark; }
+:root[data-theme="light"] { --bg: #ede4dd; --fg: #000000; color-scheme: light; }
+
+html { scroll-behavior: smooth; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body { background: var(--bg); color: var(--fg); transition: background-color .45s ease, color .45s ease; }
+::selection { background: #ff0001; color: #ede4dd; }
+
+@keyframes title-marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+@keyframes cursor-pulse { 0%,100% { transform: scale(1);} 50% { transform: scale(.94);} }
+.group:hover .title-marquee-track { animation: title-marquee 2.6s linear infinite; }
+.product-img-alt { clip-path: inset(0 0 0 100%); transition: clip-path .65s cubic-bezier(.77,0,.18,1); }
+.group:hover .product-img-alt, .group:focus-within .product-img-alt { clip-path: inset(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
